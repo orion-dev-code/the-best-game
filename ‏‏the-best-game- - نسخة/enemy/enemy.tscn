@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://d236krn25qwhn"]
+
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_plqru"]
+[ext_resource type="Texture2D" uid="uid://cyfutiqi3p28a" path="res://عدوو.png" id="2_5j0sa"]
+[ext_resource type="AudioStream" uid="uid://cuvlmor6f4jyr" path="res://sound/medium-explosion-40472 (1).mp3" id="3_nsqhp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebmdb"]
+radius = 14.0
+
+[sub_resource type="Curve" id="Curve_fjtek"]
+_data = [Vector2(0.00234742, 1), 0.0, 0.0, 0, 0, Vector2(0.992958, 0.0641509), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_j7wn0"]
+
+[node name="enemy" type="CharacterBody2D" groups=["enemy"]]
+position = Vector2(165, 90)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_plqru")
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(0.966631, 0, 0.111077, 1)
+texture_filter = 1
+position = Vector2(10.5, 7.5)
+scale = Vector2(1.28125, 1.09375)
+texture = ExtResource("2_5j0sa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(11, 6)
+shape = SubResource("CircleShape2D_ebmdb")
+debug_color = Color(0.942436, 0.241064, 0, 0.42)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(11, 6)
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.83
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 80.0
+initial_velocity_max = 80.0
+angular_velocity_min = 720.0
+angular_velocity_max = 720.0
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_fjtek")
+color = Color(0.792157, 0, 0, 1)
+color_ramp = SubResource("Gradient_j7wn0")
+
+[node name="explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nsqhp")

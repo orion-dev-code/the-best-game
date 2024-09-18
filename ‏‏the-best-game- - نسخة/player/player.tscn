@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://bxnbn31eu5n45"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_lin1i"]
+[ext_resource type="Texture2D" uid="uid://d4cisq7u3hbs2" path="res://player_m.png" id="2_k2wi1"]
+[ext_resource type="PackedScene" uid="uid://rm5v8726uvrv" path="res://gun/gun.tscn" id="3_wulnd"]
+[ext_resource type="Texture2D" uid="uid://blferh2o0ijn7" path="res://nothing/image (2).png" id="4_06xqa"]
+[ext_resource type="Texture2D" uid="uid://clwxfa3qg0bkf" path="res://nothing/البطاطا.png" id="5_mo6rv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wpkq"]
+size = Vector2(18, 17)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sj77k"]
+radius = 22.2036
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6f2v7"]
+texture = ExtResource("4_06xqa")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e2djs"]
+texture = ExtResource("5_mo6rv")
+
+[node name="player" type="CharacterBody2D" groups=["player"]]
+position = Vector2(239, 134)
+script = ExtResource("1_lin1i")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-4, 1.5)
+scale = Vector2(1.3125, 1.21875)
+texture = ExtResource("2_k2wi1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_1wpkq")
+
+[node name="gun" parent="." instance=ExtResource("3_wulnd")]
+position = Vector2(-1, 1)
+
+[node name="hurt_box" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_sj77k")
+debug_color = Color(0.997257, 0, 0.169914, 0.42)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+offset_left = -26.0
+offset_top = -23.0
+offset_right = 28.0
+offset_bottom = -18.0
+scale = Vector2(1, 2.24)
+theme_override_styles/background = SubResource("StyleBoxTexture_6f2v7")
+theme_override_styles/fill = SubResource("StyleBoxTexture_e2djs")
+value = 100.0
+show_percentage = false

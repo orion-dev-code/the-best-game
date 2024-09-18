@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cuvlmor6f4jyr"
+path="res://.godot/imported/medium-explosion-40472 (1).mp3-2201fd264984b67c779536ac6bf25616.mp3str"
+
+[deps]
+
+source_file="res://sound/medium-explosion-40472 (1).mp3"
+dest_files=["res://.godot/imported/medium-explosion-40472 (1).mp3-2201fd264984b67c779536ac6bf25616.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

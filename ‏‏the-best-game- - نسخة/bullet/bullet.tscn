@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://ofqu5eaw6dus"]
+
+[ext_resource type="Script" path="res://bullet/bullet.gd" id="1_htl33"]
+[ext_resource type="Texture2D" uid="uid://co1yi6y5146f4" path="res://bullet.png" id="2_c7m6v"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3cx4d"]
+radius = 2.55472
+height = 13.9834
+
+[sub_resource type="Curve" id="Curve_mtnun"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0188679), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="bullet" type="Area2D"]
+top_level = true
+position = Vector2(212, 135)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_htl33")
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(0.859583, 0.432544, 3.85046e-07, 1)
+position = Vector2(-0.0331089, 0.198658)
+scale = Vector2(0.0619125, 0.0439821)
+texture = ExtResource("2_c7m6v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-0.0662079, 0.198654)
+rotation = -1.57373
+shape = SubResource("CapsuleShape2D_3cx4d")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 5
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.9
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 80.0
+initial_velocity_max = 80.0
+angular_velocity_min = 720.0
+angular_velocity_max = 720.0
+damping_min = 94.783
+damping_max = 94.783
+scale_amount_min = 7.0
+scale_amount_max = 7.0
+scale_amount_curve = SubResource("Curve_mtnun")
+color = Color(0.854902, 0.407843, 0, 1)
+
+[connection signal="body_entered" from="." to="." method="_if_enemy_entered"]
